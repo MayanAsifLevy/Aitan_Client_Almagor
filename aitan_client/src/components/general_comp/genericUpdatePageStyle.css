@@ -1,0 +1,182 @@
+body {
+  font-family: 'Varela Round', sans-serif;
+}
+
+
+.updatesMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+
+
+.tableName {
+  font-weight: bold;
+  color: #561309;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 1em;
+}
+
+.tableNameAction{
+  margin-top: 0rem;
+}
+
+
+.changeData {
+  text-align: right;
+}
+
+
+.borderData {
+  border-top: 2mm ridge #f7ab61;
+
+}
+
+
+.viewData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  text-align: right;
+  font-size: 1rem;
+
+}
+
+
+.addButton {
+  background-color: white;
+  color: black;
+  font-size: 1.8rem;
+  border: 2px solid white
+}
+
+
+.addButton:hover {
+  color: #f7ab61;
+}
+
+
+.addButton:disabled {
+  color: white;
+}
+
+
+.tableData {
+  text-align: right;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+
+.edit_del_buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.iconButton {
+  background-color: transparent;
+  font-size:1.5rem;
+  border: 0px solid white;
+  border-radius:50%;
+  color: gray;
+}
+
+
+.iconButton:hover {
+  background-color:#f7ab61;
+}
+
+
+.checkbox_is_Active {
+  transform: scale(1);
+  float: center;
+  margin: 0 auto;
+}
+
+
+
+.cost_button {
+  background: linear-gradient(to bottom right,#f7ab61, #c2660a);
+  border: 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2;
+  font-family: 'Varela Round', sans-serif;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.cost_button:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.cost_button:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+
+
+
+.Edit_form {
+  width: 100%;
+}
+
+
+.editButton {
+  border-radius: 1rem;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+  border: 2px solid gray;
+  font-weight: bold;
+  width: 100%;
+}
+
+.editButton:hover {
+  background-color: #f7ab61;
+}
+
+.inputText {
+  border: 1px solid white
+}
+
+.editInput{
+  width: 100%;
+}
+
+
+.tableData_changes{
+  display: flex;
+  text-align: right;
+  font-weight: normal;
+  font-size: 1rem;
+  align-items:flex-start;
+  flex-direction: column;
+  gap:0.5em;
+}
+
+
+.editButtons_container{
+  display: flex;
+  gap:0.5em;
+  margin-right: 0.5em; 
+}
+
+
+.detailsData{
+  border-top: 2mm ridge #f7ab61;
+}

@@ -1,0 +1,65 @@
+.title {
+    font-size: 100px;
+    font-family: 'Varela Round', sans-serif;
+    text-align: center;
+    color: #f7ab61;
+    font-weight: bold;
+}
+
+
+.logo {
+
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 10%; */
+    height: 80%;
+    width: 80%;
+}
+
+
+.div_imp_season {
+    height:5em;
+    width: 15em;
+    right: 0;
+}
+
+.dropItem {
+    font-size:1.5rem;
+
+}
+
+
+.pickSeason {
+    display: flex;
+    font-family: 'Varela Round', sans-serif;
+    gap: 0.5em;
+    flex-direction: row;
+    font-size: 3.4rem;
+    justify-content: center;
+}
+
+
+.dropList {
+    border-radius: 0.75rem;
+    border-color: white;
+    font-size: 3.125rem;
+}
+
+.login_container{
+    display:flex;
+    flex-direction:column;
+    /* margin: 10px; */
+
+   
+}
+
+.login_container_data{
+    display:flex;
+    /* width: 100%; */
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem;
+    gap: 50%;
+}

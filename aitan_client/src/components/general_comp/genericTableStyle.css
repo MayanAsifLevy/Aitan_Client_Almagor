@@ -1,0 +1,107 @@
+.tableDataInfo {
+  border-spacing: 0;
+  margin-right: 0.8em;
+  margin-left: 0.8em;
+ }
+
+
+.aggregation{
+   position: relative;
+  padding-right:10% ;
+  padding-left:10% ;
+  margin: auto;
+
+ } 
+
+
+.tableData_th {
+  margin: 0 0.8em;
+  border-bottom: 2px solid black;
+  font-size: 1rem;
+  vertical-align: top;
+}
+
+
+.tableData_td {
+  margin: 0.8 0.8em;
+  border-bottom: 1px solid gray;
+  font-size: 1rem;
+  padding-left: 0.8em;
+
+}
+
+
+.tableofInfo>tr:hover {
+  background-color: bisque;
+}
+
+
+
+tbody>.trChanges:hover {
+  background-color: #ffffff;
+}
+
+
+.pagination {
+  font-size: 1rem;
+}
+
+
+.table_title_filter {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.new-tooltip span {
+  visibility: hidden;
+  font-size: 1rem;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.7em;
+  padding: 0.7em 0;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+.new-tooltip:hover span {
+  visibility: visible;
+}
+
+
+.filterButton {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+}
+
+
+.unfilterButton {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  font-size: 1.25rem;
+}
+
+
+.tableData_td>input,
+.tableData_td>select,
+.react-datepicker__input-container>input {
+  border: 1px solid white;
+  font-size: 1rem;
+}
+
+
+.tableData_th> span> .unfilterButton {
+ text-align:center;
+ width: 100%;
+}
+
+
+.filterContainer{
+  display: flex;
+  gap: 0.05em;
+}

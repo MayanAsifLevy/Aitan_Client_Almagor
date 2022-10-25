@@ -1,0 +1,3 @@
+export const GET_TRADERS = "GET_TRADERS";
+export const GET_TRADER_UPDATE = "GET_TRADER_UPDATE";
+export const COPY_TRADER = "COPY_TRADER"

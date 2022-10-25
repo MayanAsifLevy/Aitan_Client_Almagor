@@ -1,0 +1,121 @@
+body{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.25rem; 
+}
+
+
+.mainPageContainer{
+    width: 100%;
+}
+
+
+.container{
+    max-width: 100%;
+}
+
+
+.navContainer {
+    display: flex;
+    border-bottom: 4mm ridge #f7ab61;
+    justify-content: space-between;
+    padding-right: 0%;
+}
+
+
+.img_seasson{
+    display: flex;
+    justify-content: space-between;
+    margin:0;
+    width: 30%;
+}
+
+
+.div_imp {
+    height: 4em;
+    width: 15em;
+    right: 0;
+}
+
+
+.logo {
+    max-width:100%;
+    max-height:100%;
+    margin-right: 0 !important; 
+    margin-left: 0 !important; 
+}
+
+
+.navContainerButtons_titles {
+    display: flex;
+    width: 25%;
+    justify-content: space-between;
+}
+
+
+.navButton {
+    font-weight: bold;
+    font-size: 2rem; 
+    background-color: white;
+    border: 2px solid white;
+    color: #f7ab61;
+    padding:0;
+    text-align: center;
+ }
+
+
+.title_button{
+    color: #561309
+}
+
+
+.logOutContainer{
+    align-self:center;
+}
+
+
+.season, .logout{
+    color: #561309 !important;
+    width: 100%;
+    align-self:center;
+}
+
+.seasonEdit {
+    display: flex;
+}
+
+
+.subMainPage {
+    display: flex;
+}
+
+
+.extraOptions {
+    border-left: 4mm ridge #f7ab61;
+    width:15%;
+    text-align: right;
+}
+
+
+.update_container {
+    margin-right: 1em;
+    font-size: 1.3rem; 
+    text-align: right;
+}
+
+
+.updateButtons {
+    background-color: white;
+    border: 2px solid white;
+}
+
+
+.detailsPage {
+    width: 85%; 
+    /* min-height:790px; */
+    height: 100%;
+}
+
+
+.popupMessage {
+    font-size: 1.8rem;
+} 

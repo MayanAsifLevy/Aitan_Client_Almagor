@@ -1,0 +1,4 @@
+export const GET_DEALS = "GET_DEALS";
+export const GET_DEAL_UPDATE = "GET_DEAL_UPDATE";
+export const COPY_DEAL = "COPY_DEAL"
+export const SAVE_FRUITDEALIST = "SAVE_FRUITDEALIST"
