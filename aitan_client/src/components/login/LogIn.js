@@ -81,7 +81,7 @@ const Login = () => {
                         <div className="filtersInput">
 
                             <div>
-                                <input type="text" id="usename" ref={userinputRef} />
+                                <input type="text" id="usename" ref={userinputRef} autocomplete="off"/>
                             </div>
                             <br />
                             <div >

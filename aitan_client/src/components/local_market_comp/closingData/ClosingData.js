@@ -124,7 +124,7 @@ const ClosingDataPage = () => {
     () => [
       {
         id: "deliveryNoteNum",
-        desc: false
+        desc: true
       },
       {
         id: "palletNum",

@@ -93,7 +93,7 @@ const InvoiceDetailsPage = () => {
   // check if there is deliveryNote - to remove the delete icon
   const checkButtonDelete = (data) => {
 
-    if (data['fruitName'] === '' && data['invoiceNum'] === '-') /*data['invoiceNum'].length==='')*/ {
+    if (data['fruitName'] === '' && data['receiptNum']!=='availableReceipt') /*data['invoiceNum'].length==='')*/ {
       return true
     }
     else {
@@ -103,7 +103,7 @@ const InvoiceDetailsPage = () => {
 
   const checkButtonCopy = (data) => {
 
-    if (data['fruitName'] === ''&& data['invoiceNum'] === '-') {
+    if (data['fruitName'] === '' && data['receiptNum']!=="availableReceipt") {
       return true
     }
     else {
@@ -114,7 +114,7 @@ const InvoiceDetailsPage = () => {
 
   const checkButtonEdit = (data) => {
 
-    if (data['fruitName'] === ''&& data['invoiceNum'] === '-') {
+    if (data['fruitName'] === '' && data['receiptNum']!=='availableReceipt') {
       return true
     }
     else {

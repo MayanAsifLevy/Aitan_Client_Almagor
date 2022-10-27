@@ -19,7 +19,7 @@ const AddInvoiceLine = (props) => {
     let selectedInvoiceHeaderID = headerCopy.id // in order to get the lines' invoice header id
 
 
-    const blankRecord = { invoiceHeaderID: selectedInvoiceHeaderID, deliveryNote_headerID: 'בחר', invoiceNum: headerCopy.invoiceNum }
+    const blankRecord = { invoiceHeaderID: selectedInvoiceHeaderID, deliveryNote_headerID: 'בחר', invoiceNum: headerCopy.invoiceNum}
 
     let [copyLine, setCopyLine] = useState(blankRecord)
 
@@ -41,7 +41,7 @@ const AddInvoiceLine = (props) => {
     let deliveryNoteList = useSelector(state => state.deliveryNote.deliveryNotes_witLines)
 
     let deliveryNoteInInvoice = []
-    if (deliveryNoteList.length !== 0) { deliveryNoteInInvoice = deliveryNoteList.filter(item => item.invoiceNum === '-') }// not in invoice
+    if (deliveryNoteList.length !== 0) { deliveryNoteInInvoice = deliveryNoteList.filter(item => (item.invoiceNum == '-' && item.traderName===headerCopy.traderName)) }// not in invoice
 
 
     if (deliveryNoteList.length > 1) {

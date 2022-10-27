@@ -157,7 +157,7 @@ const InvoicesPage = () => {
       //once done we get the result of the data from the action and saveit in teh localstorage
       .then(function (result) {
 
-        localStorage.setItem('invoiceLinesFilter', JSON.stringify(result['invoiceLines']))
+       localStorage.setItem('invoiceLinesFilter', JSON.stringify(result['invoiceLines']))
         localStorage.setItem('palletCostFilter', JSON.stringify(result['palletCost']))
         localStorage.setItem('resellerInfoFilter', JSON.stringify(result['resellerInfo']))
 
