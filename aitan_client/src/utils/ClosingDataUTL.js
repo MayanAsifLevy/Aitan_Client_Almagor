@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export async function GetClosingData_list(season, _token) {
   try {
-    const result = await axios.get(`${process.env.REACT_APP_CLOSINGDATA_API}`, { params: { 'season2filter': season }, headers: { "x-access-token": _token } })
+    const result = await axios.get(`${process.env.REACT_APP_BASE_APP}`, { params: { 'season2filter': season }, headers: { "x-access-token": _token } })
     return result.data
   } catch (error) {
     console.error(error);
@@ -13,7 +13,7 @@ export async function GetClosingData_list(season, _token) {
 
 export async function delete_closingData(id) {
   try {
-    const result = await axios.delete(`${process.env.REACT_APP_CLOSINGDATA_API}/${id}`);
+    const result = await axios.delete(`${process.env.REACT_APP_BASE_APP}/closingData/${id}`);
     return result.data
   } catch (error) {
     console.error(error);
