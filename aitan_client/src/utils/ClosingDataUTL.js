@@ -23,7 +23,7 @@ export async function delete_closingData(id) {
 
 export async function Update_closingData(closingDataData, id) {
   try {
-    const result = await axios.put(`${process.env.REACT_APP_CLOSINGDATA_API}/${id}`, closingDataData);
+    const result = await axios.put(`${process.env.REACT_APP_BASE_APP}/closingData/${id}`, closingDataData);
     return result.data
   } catch (error) {
     console.error(error);
