@@ -33,7 +33,7 @@ export async function Update_closingData(closingDataData, id) {
 
 export async function Add_closingData(closingDataData) {
   try {
-    const result = await axios.post(`${process.env.REACT_APP_CLOSINGDATA_API}`, closingDataData);
+    const result = await axios.post(`${process.env.REACT_APP_BASE_APP}/closingData`, closingDataData);
     return result.data
   } catch (error) {
     console.error(error);
