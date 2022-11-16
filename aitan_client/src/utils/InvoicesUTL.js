@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export async function GetInvoiceHeader_list(season, _token) {
   try {
-    const result = await axios.get(`${process.env.REACT_APP_INVOICEHEADER_API}`, { params: { 'season2filter': season }, headers: { "x-access-token": _token } })
+    const result = await axios.get(`${process.env.REACT_APP_BASE_APP}/invoice_header`, { params: { 'season2filter': season }, headers: { "x-access-token": _token } })
     return result.data
   } catch (error) {
     console.error(error);
@@ -16,7 +16,7 @@ export async function GetInvoiceHeader_list(season, _token) {
 
 export async function delete_invoiceHeader(id) {
   try {
-    const result = await axios.delete(`${process.env.REACT_APP_INVOICEHEADER_API}/${id}`);
+    const result = await axios.delete(`${process.env.REACT_APP_BASE_APP}/invoice_header/${id}`);
     return result.data
   } catch (error) {
     console.error(error);
@@ -26,7 +26,7 @@ export async function delete_invoiceHeader(id) {
 
 export async function update_invoiceHeader(invoiceHeaderData, id) {
   try {
-    const result = await axios.put(`${process.env.REACT_APP_INVOICEHEADER_API}/${id}`, invoiceHeaderData);
+    const result = await axios.put(`${process.env.REACT_APP_BASE_APP}/invoice_header/${id}`, invoiceHeaderData);
     return result.data
   } catch (error) {
     console.error(error);
@@ -36,7 +36,7 @@ export async function update_invoiceHeader(invoiceHeaderData, id) {
 
 export async function add_invoiceHeader(invoiceHeaderData) {
   try {
-    const result = await axios.post(`${process.env.REACT_APP_INVOICEHEADER_API}`, invoiceHeaderData);
+    const result = await axios.post(`${process.env.REACT_APP_BASE_APP}/invoice_header`, invoiceHeaderData);
     return result.data
   } catch (error) {
     console.error(error);
@@ -45,7 +45,7 @@ export async function add_invoiceHeader(invoiceHeaderData) {
 
 export async function update_InvoiceStatus(receiptHeaderData) {
   try {
-    const result = await axios.put(`${process.env.REACT_APP_INVOICEHEADER_API}`, { params: { 'receiptHeaderData2filter': receiptHeaderData } });
+    const result = await axios.put(`${process.env.REACT_APP_BASE_APP}/invoice_header`, { params: { 'receiptHeaderData2filter': receiptHeaderData } });
     console.log('result', result)
     return result.data
   } catch (error) {
@@ -59,7 +59,7 @@ export async function update_InvoiceStatus(receiptHeaderData) {
 
 export async function GetInvoiceLines_list(invoiceHeaderID) {
   try {
-    const result = await axios.get(`${process.env.REACT_APP_INVOICELINES_API}`, { params: { 'invoiceHeaderID2filter': invoiceHeaderID } })
+    const result = await axios.get(`${process.env.REACT_APP_BASE_APP}/invoice_lines`, { params: { 'invoiceHeaderID2filter': invoiceHeaderID } })
     return result.data
   } catch (error) {
     console.error(error);
@@ -69,7 +69,7 @@ export async function GetInvoiceLines_list(invoiceHeaderID) {
 
 export async function delete_invoiceLines(id) {
   try {
-    const result = await axios.delete(`${process.env.REACT_APP_INVOICELINES_API}/${id}`);
+    const result = await axios.delete(`${process.env.REACT_APP_BASE_APP}/invoice_lines/${id}`);
     return result.data
   } catch (error) {
     console.error(error);
@@ -80,7 +80,7 @@ export async function delete_invoiceLines(id) {
 
 export async function delete_AllInvoiceLines(invoiceHeaderID) {
   try {
-    const result = await axios.delete(`${process.env.REACT_APP_INVOICELINES_API}`, { params: { 'invoiceHeaderID2filter': invoiceHeaderID } });
+    const result = await axios.delete(`${process.env.REACT_APP_BASE_APP}/invoice_lines`, { params: { 'invoiceHeaderID2filter': invoiceHeaderID } });
     return result.data
   } catch (error) {
     console.error(error);
@@ -89,7 +89,7 @@ export async function delete_AllInvoiceLines(invoiceHeaderID) {
 
 export async function update_invoiceLines(invoiceLinesData, id) {
   try {
-    const result = await axios.put(`${process.env.REACT_APP_INVOICELINES_API}/${id}`, invoiceLinesData);
+    const result = await axios.put(`${process.env.REACT_APP_BASE_APP}/invoice_lines/${id}`, invoiceLinesData);
     return result.data
   } catch (error) {
     console.error(error);
@@ -99,7 +99,7 @@ export async function update_invoiceLines(invoiceLinesData, id) {
 
 export async function add_invoiceLines(invoiceLinesData) {
   try {
-    const result = await axios.post(`${process.env.REACT_APP_INVOICELINES_API}`, invoiceLinesData);
+    const result = await axios.post(`${process.env.REACT_APP_BASE_APP}/invoice_lines`, invoiceLinesData);
     return result.data
   } catch (error) {
     console.error(error);
