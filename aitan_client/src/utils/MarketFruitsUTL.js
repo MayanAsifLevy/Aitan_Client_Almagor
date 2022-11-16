@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export async function GetMarketFruit_list(_token) {
   try {
-    const result = await axios.get(`${process.env.REACT_APP_MARKETFRUITS_API}`, { headers: { "x-access-token": _token } })
+    const result = await axios.get(`${process.env.REACT_APP_BASE_APP}/marketFruits`, { headers: { "x-access-token": _token } })
     return result.data
   } catch (error) {
     console.error(error);
@@ -13,7 +13,7 @@ export async function GetMarketFruit_list(_token) {
 
 export async function delete_marketFruit(id) {
   try {
-    const result = await axios.delete(`${process.env.REACT_APP_MARKETFRUITS_API}/${id}`);
+    const result = await axios.delete(`${process.env.REACT_APP_BASE_APP}/marketFruits/${id}`);
     return result.data
   } catch (error) {
     console.error(error);
@@ -23,7 +23,7 @@ export async function delete_marketFruit(id) {
 
 export async function Update_marketFruit(marketFruitFruitData, id) {
   try {
-    const result = await axios.put(`${process.env.REACT_APP_MARKETFRUITS_API}/${id}`, marketFruitFruitData);
+    const result = await axios.put(`${process.env.REACT_APP_BASE_APP}/marketFruits/${id}`, marketFruitFruitData);
     return result.data
   } catch (error) {
     console.error(error);
@@ -33,7 +33,7 @@ export async function Update_marketFruit(marketFruitFruitData, id) {
 
 export async function Add_marketFruit(marketFruitFruitData) {
   try {
-    const result = await axios.post(`${process.env.REACT_APP_MARKETFRUITS_API}`, marketFruitFruitData);
+    const result = await axios.post(`${process.env.REACT_APP_BASE_APP}/marketFruits`, marketFruitFruitData);
     console.log('result', result)
     return result.data
   } catch (error) {
