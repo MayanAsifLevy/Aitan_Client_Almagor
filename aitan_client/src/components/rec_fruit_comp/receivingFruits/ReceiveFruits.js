@@ -61,7 +61,8 @@ const ReceiveFruitsPage = () => {
       {
         Header: 'ביא"ר',
         accessor: "packingHouseName",
-        width: "8%"
+        width: "8%",
+        filter: 'equals',
       },
       {
         Header: "מגדל",
@@ -96,12 +97,14 @@ const ReceiveFruitsPage = () => {
       {
         Header: "יח' אריזה",
         accessor: "qtyInPacking",
-        width: "8%"
+        width: "8%",
+        //filter: 'equals'
       },
       {
         Header: "משקל ברוטו",
         accessor: "weightBruto",
-        width: "10%"
+        width: "10%",
+       // filter: 'equals'        
       }
 
     ]

@@ -1,4 +1,4 @@
- import React from 'react'
+import React from 'react'
 
 export const ColumnFilter = ({ column }) => {
 
@@ -7,12 +7,8 @@ export const ColumnFilter = ({ column }) => {
 
   return (
     <span >
-      <input style={{width: '4.5rem', fontSize: '1rem'}} value={filterValue || ''} onChange={e => setFilter(e.target.value)} />
+      <input style={{width: '4.5rem', fontSize: '1rem'}} value={filterValue || ''} onChange={e => setFilter(e.target.value || undefined)} />
 
     </span>
   )
 }
-
-
-
- 
