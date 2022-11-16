@@ -55,7 +55,7 @@ const EditInvoiceLine = (props) => {
     let deliveryNoteList = useSelector(state => state.deliveryNote.deliveryNotes_witLines)
 
     let deliveryNoteInInvoice = []
-    if (deliveryNoteList.length !== 0) { deliveryNoteInInvoice = deliveryNoteList.filter(item => (item.invoiceNum == '-' && item.traderName===copyHeader.traderName)) }// not in invoice
+    if (deliveryNoteList.length !== 0) { deliveryNoteInInvoice = deliveryNoteList.filter(item => (item.invoiceNum === '-' && item.traderName===copyHeader.traderName)) }// not in invoice
 
 
     if (deliveryNoteList.length > 1) {
