@@ -1,70 +1,289 @@
-# Getting Started with Create React App
+# “Aitan”Packing House's management tool
+This project was developed to assist the packinghouse to be more efficient by capturing it entire activities.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Technological tools:
+ ![image](https://user-images.githubusercontent.com/58429034/198946311-32c66cd0-5eed-421a-8c4b-35bfc9e88718.png)
+ 
+# DataBase architecture:
+Receiving Fruits section:
+```mermaid
+    erDiagram
+        dealsname ||--o{ deals : "is part of"  
+        fruits ||--o{ deals : "is part of"
+     
+        fruits ||--o{ receiving_fruits : "is part of"      
+        plots ||--o{ receiving_fruits : "is part of"
+        packing_mat ||--o{ receiving_fruits : "is part of"
+        packing_house ||--o{ receiving_fruits : "is part of"
+        growers ||--o{ receiving_fruits : "is part of"
 
-## Available Scripts
+fruits{
+        int ID PK
+        string fruitName "unique"
+        string fruitType
+        Boolean isActive
+        date created_date
+     }
 
-In the project directory, you can run:
+dealsname{
+        int ID  PK
+        string DealName "unique"
+        Boolean isActive
+        date created_date
+     }
 
-### `npm start`
+deals{
+        int ID  PK
+        date fromDate  "unique"
+        date toDate
+        int season "unique"
+        int dealNameID FK "unique"
+        int fruitTypeID FK "unique"
+        decimal price1
+        date price1Date
+        decimal price2
+        date price2Date
+        decimal price3
+        date price3Date
+        date created_date
+     }
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+plots{
+        int ID PK
+        string PlotName "unique"
+        Boolean isActive
+        date created_date
+     }
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+packing_mat{
+        int ID PK
+        string packingType "unique"
+        decimal weight
+        Boolean isActive
+        date created_date
+     }
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+packing_house{
+        int ID PK
+        string packingHouseName "unique"
+        Boolean isActive
+        date created_date
+     }
 
-### `npm run build`
+growers{
+        int ID PK
+        string growerName "unique"
+        Boolean isActive
+        date created_date
+     }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+receiving_fruits{
+        int ID PK
+        date receiveDate "unique"
+        int season
+        int growerID FK
+        string deliverNote
+        int packingHouseID FK
+        int dealNameID FK
+        int packingMatID FK
+        int qtyInPacking 
+        int weightBruto 
+        date created_date
+    }
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Local Market section:
+```mermaid
+    erDiagram
+        fruits ||--|{ market_fruits : "is part of"
+        fruitsize ||--|{ market_fruits : "is part of"
+        market_packing_mat ||--o{ fruitPalletCreation_lines : "is part of"
+        market_fruits ||--o{ fruitPalletCreation_lines : "is part of"
+        palletsMat ||--|{ palletsMatCost : has
+        palletsMat ||--o{ fruitPalletCreation_header : "is part of"
+        fruitPalletCreation_header ||--|| deliveryNote_lines : "is part of"
+        fruitPalletCreation_header ||--o{ fruitPalletCreation_lines : has
+        traders ||--o{ deliveryNote_header : "is part of"
+        traders ||--o{ invoice_header : "is part of"
+        manufacturer_invoice ||--o{ invoice_header : "is conncted to"
+        deliveryNote_header ||--o{ deliveryNote_lines : "is part of"
+        deliveryNote_header ||--o{ invoice_lines : has
+        invoice_header ||--o{ receipt_header : has
+        invoice_header ||--o{ invoice_lines : has
+        receipt_header ||--o{ receipt_lines : has
+        fruitPalletCreation_lines ||--o{ closingData : has
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+fruits{
+    int ID  PK
+    string fruitName "unique"
+    string fruitType
+    Boolean isActive
+    date created_date
+    }
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+fruitsize{
+    int ID  PK
+    string size "unique"
+    Boolean isActive
+    date created_date
+     }
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+market_fruits{
+    int ID  PK
+    int fruitID FK "unique"
+    int sizeID FK "unique"
+    string quality  "unique"
+    Boolean isActive
+    date created_date
+     }
 
-## Learn More
+market_packing_mat{
+    int ID  PK
+    string marketPackingType  "unique"
+    Boolean isActive
+    date created_date
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+fruitPalletCreation_lines{
+    int ID  PK
+    int fruitPalletCreation_headerID FK 
+    int marketFruitID FK 
+    int marketPackingMatID FK
+    int packMatQty
+    int weightNeto
+    date created_date
+}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+closingData{
+    int ID  PK
+    int fruitPalletCreationLineID FK "unique"
+    decimal closeWeight 
+    decimal closePrice
+    date closeDate
+    string closeRemarks
+    date created_date
+}
 
-### Code Splitting
+palletsMat{
+    int ID  PK
+    string palletMatType
+    decimal palletMatWeight
+    Boolean isActive
+    date created_date
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+fruitPalletCreation_header{
+    int ID  PK
+    int season
+    int palletTypeID FK
+    date packingDate
+    string palletRemarks
+    date created_date
+}
 
-### Analyzing the Bundle Size
+deliveryNote_lines{
+    int ID  PK
+    int deliveryNote_headerID FK
+    int fruitPalletCreation_headerID
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+traders{
+    int ID  PK
+    string traderName "unique"
+    string area
+     Boolean isActive
+}
 
-### Making a Progressive Web App
+deliveryNote_header{
+    int ID  PK
+    int season   "unique"
+    int deliveryNoteNum "unique"
+    date deliveryDate
+    int traderID FK
+    decimal traderPrcnt
+    decimal distributerPrcnt
+    decimal Vat
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+palletsMatCost{
+    int ID  PK
+    int palletMatID "unique"
+    date costFromDate
+    date costTillDate
+    decimal palletMatCost
+}
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+invoice_lines{
+    int ID PK   
+    int invoiceHeaderID FK "unique"
+    int deliveryNote_headerID FK "unique"
+}
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+manufacturer_invoice{
+    int ID PK
+    int season "unique"
+    int manufacturerInvNum "unique"
+    decimal invoiceTotal
+    date invoiceDate
+    string invoiceNotes
+}
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+invoice_header{
+    int ID PK
+    int season "unique"
+    int invoiceNum "unique"
+    int traderID
+    date invoiceDate
+    int manufacturerInvoiceID
+}
+
+receipt_lines{
+    int ID PK
+    int receiptHeaderID "unique"
+    string  paymentType 
+    int checkNum
+    string bankName
+    date paymentDueDate
+    decimal sumPayment
+}
+
+receipt_header{
+    int ID PK
+    int season "unique"
+    int receiptNum "unique"
+    date receiptDate
+    int InvoiceHeaderID FK
+    string invoiceRemarks
+
+
+}
+```
+
+
+
+# Server architecture – example:
+ ![image](https://user-images.githubusercontent.com/58429034/198946377-daca0a82-c42b-40d2-9b22-fc45c9886b7b.png)
+
+
+# Client structure:
+ * Components:
+      * General comp – Popups, Generic components (table, updatesection , add, edit, table
+      * Login –contain username & password (JWT)
+      * Main page – contains how all the pages will be designed (main table and infrastructure, actions & reports)
+      * Rec_fruit_comp / local market– for each DB table, we can do CRUD
+      
+ * Redux:
+      * For each of the folders above we have the store data updates abilities:
+      * Set action types, actions, reducer 
+      * Root reducer – combines all the reducer
+      * Set of store
+
+ * UTLs:
+      * Connections to API
