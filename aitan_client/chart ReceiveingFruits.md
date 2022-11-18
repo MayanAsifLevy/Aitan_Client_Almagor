@@ -1,5 +1,7 @@
+
 ```mermaid
     erDiagram
+    
         dealsname ||--o{ deals : "is part of"  
         fruits ||--o{ deals : "is part of"
      
@@ -85,4 +87,6 @@ receiving_fruits{
         date created_date
     }
 ```
+]
+
 
