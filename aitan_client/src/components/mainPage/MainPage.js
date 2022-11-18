@@ -26,8 +26,7 @@ const MainPageComp = () => {
   let traderPrcnt = useSelector(state => state.general.traderPrcnt)
   let distributerPrcnt = useSelector(state => state.general.distributerPrcnt)
 
-  // in order to save the VAT, and other fixedInfo
-
+  // in order to save the VAT, and other fixedInfo which are needed for the deliveryNote
   useEffect(() => {
     if (VAT === 0 || traderPrcnt === 0 || distributerPrcnt === 0) { dispatch(loadFixedInfo(_token)) }
 
@@ -36,7 +35,7 @@ const MainPageComp = () => {
 
   const [selected, setSelected] = useState(null);
   const items = ["קבלת פרי", "שוק מקומי"];
-  const [updateIsOpen, setUpdateIsOpen] = useState(false)
+  const [updateIsOpen, setUpdateIsOpen] = useState(false) // update===infrastructure section
   const [actionIsOpen, setActionIsOpen] = useState(false)
   const [popUp, setPopUp] = useState(false)
 
@@ -65,10 +64,10 @@ const MainPageComp = () => {
     }
   }
 
-
+  //תשתית
   const updatesHandler = () => {
     setUpdateIsOpen(!updateIsOpen)
-    setPopUp(!popUp)
+    setPopUp(!popUp) 
   }
 
   const actionsHandler = () => {
@@ -77,7 +76,7 @@ const MainPageComp = () => {
   }
 
   const reportHandler = (sectionName) => {
-    setPopUp(!popUp)
+    setPopUp(!popUp) // become True and will be seen ONLY if teh sectionName ==''
     switch (sectionName) {
       case "rec_fruit":
         return navigate("reportsReceiveMain/")
@@ -104,6 +103,7 @@ const MainPageComp = () => {
             <img src={logo} className="logo" alt="aitanLogo" />
           </div>
 
+          {/* the ability to change season from the mainPage */}
           <div className="navButton season seasonEdit" >
             עונה: {selected_season}
             <button className='iconButton' onClick={() => handleSeasonEdit()}><MdModeEdit /></button>
@@ -111,6 +111,7 @@ const MainPageComp = () => {
 
         </div>
 
+        {/* the ability to view diffrent sections on the top of the mainPage */}
         <div className="navContainerButtons_titles">
           {
             items.map(item => {
@@ -125,15 +126,17 @@ const MainPageComp = () => {
         </div>
       </div>
 
+      {/* the ability to view diffrent content of diffrent pages*/}
       <div className="subMainPage">
 
+        {/* the ability to view diffrent content of diffrent pages*/}
         <div className="extraOptions" style={{ height: "89vh" }}>
+          
           {/* ========== once clicking on the updatesHandler => the popUP changes to true ===========  */}
-          <input type="button" className="navButton" value={sectionName !== "" ? "תשתית" : ""/*(sectionName === "local_market" ? "תהליך" : "")*/} onClick={updatesHandler} />
+          <input type="button" className="navButton" value={sectionName !== "" ? "תשתית" : ""} onClick={updatesHandler} />
           <br />
           {sectionName === "rec_fruit" && updateIsOpen && <ReceiveTableUpdates />}
           {sectionName === "local_market" && updateIsOpen && <LocalTableInfra />}
-
 
 
           {/* in case the user didnt select section before he clicked on the "updates" button */}
@@ -147,13 +150,14 @@ const MainPageComp = () => {
 
           <br />
 
-          <input type="button" className="navButton" value={sectionName === "local_market" ? "פעולות" : ""/*(sectionName === "local_market" ? "דוחות" : "")*/} onClick={actionsHandler} />
+          {/* the פעולות section can only appear in teh local_market */}
+          <input type="button" className="navButton" value={sectionName === "local_market" ? "פעולות" : ""} onClick={actionsHandler} />
           <br />
           {sectionName === "local_market" && actionIsOpen && <LocalTableAction />}
 
           <br />
 
-          <input type="button" className="navButton" value={sectionName !== "" ? "דוחות" : ""/*(sectionName === "local_market" ? "דוחות" : "")*/} onClick={() => reportHandler(sectionName)} />
+          <input type="button" className="navButton" value={sectionName !== "" ? "דוחות" : ""} onClick={() => reportHandler(sectionName)} />
           <br />
 
         </div>

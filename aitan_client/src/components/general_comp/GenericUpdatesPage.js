@@ -11,10 +11,9 @@ const UpdatesTamplate = (props) => {
 
   const dispatch = useDispatch()
 
-
   const [rowEdit, setRowEdit] = useState({ 'rowid': '', rowdata: [], 'isEditing': false })
   const [rowAdd, setRowAdd] = useState({ rowdata: [], 'isAdding': false })
-  const [button2Disable, setButton2disable] = useState(false)
+  const [button2Disable, setButton2disable] = useState(false) // once we click on Edit/Copy/Add we doesnt want to see the plus sign
   const [popUp, setPopUp] = useState(false)
   const [row2Delete, setRow2Delete] = useState(0)
 
@@ -79,6 +78,7 @@ const UpdatesTamplate = (props) => {
 
   }
 
+  // which button needs to be avaiable for the user to click on
   const action_buttons =
   {
     Header: "",

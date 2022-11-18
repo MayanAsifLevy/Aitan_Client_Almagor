@@ -16,6 +16,8 @@ const SeasonSelect = () => {
     const [value, setValue] = useState(year)
     const years = Array.from(new Array(20), (val, index) => index + minYear);
 
+    // the following needs to be done in case the user doesnt click on any year and just move on
+    // so we need to have a default (which will run only once)
     useEffect(() => {
         dispatch(saveSeason(parseInt(year)))
     }, [])
@@ -27,7 +29,7 @@ const SeasonSelect = () => {
     }
 
 
-    const SubmitSeason = async (e) => {
+    const SubmitSeason = (e) => {
         e.preventDefault();
         navigate("/mainPage")
     }
@@ -35,7 +37,6 @@ const SeasonSelect = () => {
 
     return (
         <div >
-            {/* <p className='title'>בית אריזה "איתן"</p> */}
 
             <div className="div_imp_season" >
                 <img src={logo} className="logo" alt="aitanLogo" />

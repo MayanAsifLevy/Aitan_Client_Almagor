@@ -26,11 +26,12 @@ const Login = () => {
 
 
         //check that the user& password Token is correct
+        // send to API to craete the token so it will be saved in the store
         let credentials = { "userName": enteredUser, "password": EnteredPswd };
 
         let ToeknData = await LoginUtils.Post_Credentials(credentials)
 
-
+        // save the token in the store for later use (for other pages)
         if (ToeknData === -1) {
             dispatch(saveToken(-1))
         }
@@ -38,10 +39,12 @@ const Login = () => {
             dispatch(saveToken(ToeknData))
         }
 
-
+        //-1 means that the user was not found/issue with password
         if (ToeknData !== -1) {
             const data = await LoginUtils.Enter_Login(ToeknData["token"]);
 
+            // in case the token is fake  or the token was not provided (the user tries to enter a page 
+            //without going through the login process)   
             if (data === "you are not authorized") {
                 setMessage("אינך מורשה להכנס לאתר")
                 setPopUp(true)

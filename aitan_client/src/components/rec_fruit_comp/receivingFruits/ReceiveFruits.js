@@ -29,6 +29,8 @@ const ReceiveFruitsPage = () => {
 
   let data = []
   let getData = useSelector(state => state.receivingFruits.receivingFruits)
+
+  // in case the token is not correct/set
   if (getData !== 'The user is not autorized') { data = getData }
   else { data = [] }
 
@@ -128,13 +130,13 @@ const ReceiveFruitsPage = () => {
 
     <div className="updatesMain">
       <GenericUpdatesPage
-        pageName='קבלת פרי'
-        numOfRecordsInTable='10'
-        saveObjtoUpdateAction={saveReceivingFruit2Update}
+        pageName='קבלת פרי' 
+        numOfRecordsInTable='10' 
+        saveObjtoUpdateAction={saveReceivingFruit2Update} // in case we need to update the row - we need to save it first
         deleteObjAction={deletReceivingFruit}
-        toFilter={selected_season}
+        toFilter={selected_season} // in this case we filter the season when we ask the data from the get in teh BL on the server
         copyObjAction={copy2ReceivingFruit}
-        editObjComp={EditPage}
+        editObjComp={EditPage} // connect it to the correct page in the import section above
         addPageComp={AddPage}
         buttonsdRequried={buttonsdRequried}
         col={columns}
