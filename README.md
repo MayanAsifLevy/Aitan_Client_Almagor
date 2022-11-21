@@ -1,5 +1,5 @@
 # “Aitan”Packing House's management tool
-This project was developed to assist the packinghouse to be more efficient by capturing it entire activities.
+This project was developed to assist "Aitan" packinghouse to be more efficient by capturing its entire activities.
 
 # Technological tools:
  ![image](https://user-images.githubusercontent.com/58429034/198946311-32c66cd0-5eed-421a-8c4b-35bfc9e88718.png)
