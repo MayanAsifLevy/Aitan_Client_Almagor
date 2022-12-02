@@ -45,7 +45,7 @@ const EditeceiveFruits = (props) => {
 
     let updateReceivingFruit = useSelector(state => state.receivingFruits.receivingFruit_2_update)
 
-    // in case we cant update and we want to return the edit table to contain the original data
+    // in case we cant update (as the record uniquenes is violated) and we want to return the edit table to contain the original data
     let origReceivingFruitToUpdate = updateReceivingFruit
 
 
@@ -54,7 +54,7 @@ const EditeceiveFruits = (props) => {
 
     useEffect(() => {
         setEditReceivingFruit(updateReceivingFruit)
-        setSelectedDate(new Date(updateReceivingFruit.receivingDate))
+        setSelectedDate(new Date(updateReceivingFruit.receivingDate)) // in case the use wont select any date 
 
     }, [updateReceivingFruit])
 

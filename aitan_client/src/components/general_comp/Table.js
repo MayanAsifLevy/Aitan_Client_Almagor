@@ -18,6 +18,7 @@ const Table = ({ columns, data, numOfRecords, tableSortBy }) => {
     []
   )
 
+  // in case the devloper decide that each page needs to have more records in each page
   const numRecords = parseInt(numOfRecords)
 
   const numPageList = (numRecords < 10 ? [numRecords, 10, 20, 30, 40, 50] :
@@ -76,10 +77,11 @@ const Table = ({ columns, data, numOfRecords, tableSortBy }) => {
                     <th className='tableData_th'{...column.getHeaderProps({ style: { width: column.width } })}>
                       {column.render("Header")}
 
-                      {/* ============= sort section ============= */}
+                      {/*  == sort section - per the sortees == tableSortBy that received from the original comp: example: groers.js ==*/}
                       <span {...column.getHeaderProps(column.getSortByToggleProps())}>
                         {column.isSorted ?
                           column.isSortedDesc ? <TiArrowSortedDown /> : column.isSortedDesc === false ? <TiArrowSortedUp /> : <TiArrowUnsorted />
+                          // action== the action buttons, costview== from PalletMat.js
                           : column.id !== "action" && column.id !== "costview" ?
                             column.isSortedDesc ? <TiArrowSortedUp /> : column.isSortedDesc === false ? <TiArrowSortedDown /> : <TiArrowUnsorted />
                             : ""
@@ -87,7 +89,7 @@ const Table = ({ columns, data, numOfRecords, tableSortBy }) => {
                       </span>
 
 
-                      {/* ============= information section =============  */}
+                      {/* === information section == add data to header ("tipText" from  columns in original comp) ====  */}
                       <span className="new-tooltip"  >
                         {headerGroup.headers[index].tipText ? <BsInfoCircle /> : ''}
                         {headerGroup.headers[index].tipText && (<span> {headerGroup.headers[index].tipText} </span>)}
@@ -102,7 +104,7 @@ const Table = ({ columns, data, numOfRecords, tableSortBy }) => {
                       <br />
 
 
-                      {/* ============= filter section ============= */}
+                      {/* ============= filter section == (unless "disableFilters" is True)=========== */}
                       <span className="filterContainer">
                         {/* <div>
                           {column.canFilter ? <button className='filterButton' onClick={() => handelFilter(headerGroup.headers[index])} ><VscFilter /> </button> : null}

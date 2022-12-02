@@ -115,7 +115,7 @@ const DeliveryNotePage = () => {
   const buttonsdRequried = { updateButton: true, copyButton: true, deleteButton: true, showDetailsButton: true, printAllButton: true, printButton: true }
 
  
-  // check if there is deliveryNote - to remove the delete icon
+  // check if there is deliveryNote - to remove the delete icon for each record in the table!!
   const checkButtonDelete = (data) => {
 
 

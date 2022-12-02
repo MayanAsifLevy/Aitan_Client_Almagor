@@ -76,7 +76,7 @@ const MarketPackingMatPage = () => {
   return (
     <div className="updatesMain">
       <GenericUpdatesPage 
-        pageName='משטחים' 
+        pageName='אריזות' 
         numOfRecordsInTable='10' 
         saveObjtoUpdateAction={saveMarketPacking2Update}
         deleteObjAction={deleteMarketPacking} 

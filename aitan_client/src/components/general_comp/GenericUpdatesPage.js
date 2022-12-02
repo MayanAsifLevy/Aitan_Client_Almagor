@@ -138,10 +138,10 @@ const UpdatesTamplate = (props) => {
 
       {/* ========= plus sign on the right side data ========== */}
       <div className='changeData'>
-        {/*=======  the following will open the Edit page per the props.editObjComp in teh actual page - for example: Growers.js ======*/}
+        {/*=======  the following will open the Edit page per the props.editObjComp in teh original page - for example: Growers.js ======*/}
         {rowEdit.isEditing ? <props.editObjComp back={editBack} /> : ''}
 
-        {/*{/*=======  the following will open the Add page per the props.addPageComp in teh actual page - for example: Growers.js ======*/}
+        {/*{/*=======  the following will open the Add page per the props.addPageComp in teh original page - for example: Growers.js ======*/}
         {rowAdd.isAdding && !rowEdit.isEditing ? <props.addPageComp back={addBack} /> : ''}
 
       </div>

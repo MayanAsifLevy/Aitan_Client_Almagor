@@ -20,12 +20,13 @@ const CreatePalletPage = () => {
 
   let _token = useSelector(state => state.login.Token.token)
 
+  // get the createPalletHeaders from DB
   useEffect(() => {
     dispatch(loadHeaders(selected_season, _token))
   }, [])
 
 
-  // get the list of traders in the store
+  // get the list of createPalletHeaders from the store
   let data = []
   let getData = useSelector(state => state.createPallet.createPalletHeaders)
   if (getData !== 'The user is not autorized') { data = getData }
