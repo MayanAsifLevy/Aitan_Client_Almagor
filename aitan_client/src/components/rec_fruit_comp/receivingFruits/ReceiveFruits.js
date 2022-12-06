@@ -123,6 +123,17 @@ const ReceiveFruitsPage = () => {
     []
   );
 
+ //************************************************************************************* */
+
+  let info = (
+    <div style={{ width: '45%', fontSize: '1rem', marginRight: '1%' }}>
+      <span> <strong> שימו לב:</strong></span>
+      <span> במידה ולא קיימות חלקות כאשר רוצים להוסיף רשומה </span> <br/>
+      <span> יש תחילה להוסיף חלקות לשנה נוכחית (תחת "תשתית") </span>
+
+    </div>)
+  //************************************************************************************* */
+
 
   const buttonsdRequried = { updateButton: true, copyButton: true, deleteButton: true }
 
@@ -131,6 +142,7 @@ const ReceiveFruitsPage = () => {
     <div className="updatesMain">
       <GenericUpdatesPage
         pageName='קבלת פרי' 
+        info={info}
         numOfRecordsInTable='10' 
         saveObjtoUpdateAction={saveReceivingFruit2Update} // in case we need to update the row - we need to save it first
         deleteObjAction={deletReceivingFruit}

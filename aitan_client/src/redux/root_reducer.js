@@ -6,7 +6,8 @@ import general_reducer from "./mainPage/general_reducer";
 import growers_reducer from "./rec_fruit_actions/growers/growers_reducer";
 import packingHouse_reducer from "./rec_fruit_actions/packingHouse/packingHouse_reducer";
 import fruits_reducer from "./rec_fruit_actions/fruits/fruits_reducer";
-import plots_reducer from "./rec_fruit_actions/plots/plots_reducer";
+
+import plotsDunam_reducer from "./rec_fruit_actions/plotDunam/plotsDunam_reducer";
 import packingMaterials_reducer from "./rec_fruit_actions/packingMaterial/packingMaterial_reducer";
 import dealNames_reducer from "./rec_fruit_actions/dealNames/dealNames_reducer";
 import dealsReducer from "./rec_fruit_actions/deals/deals_reducer";
@@ -35,7 +36,7 @@ const appReducer = combineReducers({
   growers: growers_reducer,
   packingHouse: packingHouse_reducer,
   fruits: fruits_reducer,
-  plots: plots_reducer,
+  plotsDunam: plotsDunam_reducer,
   packingMaterials: packingMaterials_reducer,
   dealNames: dealNames_reducer,
   deals: dealsReducer,

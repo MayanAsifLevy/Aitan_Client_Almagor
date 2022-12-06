@@ -6,7 +6,7 @@ import { loadDealNames } from '../../../redux/rec_fruit_actions/dealNames/dealNa
 import { loadFruits } from '../../../redux/rec_fruit_actions/fruits/fruits_actions'
 import { loadGrowers } from '../../../redux/rec_fruit_actions/growers/growers_actions'
 import { loadpackingHouses } from '../../../redux/rec_fruit_actions/packingHouse/packingHouse_actions'
-import { loadPlots } from '../../../redux/rec_fruit_actions/plots/plots_actions'
+import { loadPlots } from '../../../redux/rec_fruit_actions/plotDunam/plotsDunam_actions'
 import GenericAddPage from "../../general_comp/GenericAddPage";
 import GenericListCreator from "../../general_comp/GenericListCreator";
 import EditableCell from '../../general_comp/EditableCell'
@@ -61,7 +61,7 @@ const AddReceiveFruits = (props) => {
     let growersList = useSelector(state => state.growers.growers)
     let packingHousesList = useSelector(state => state.packingHouse.packingHouses)
     let packingMaterialsList = useSelector(state => state.packingMaterials.packingMaterials)
-    let plotsList = useSelector(state => state.plots.plots)
+    let plotsList = useSelector(state => state.plotsDunam.plots)
 
     useEffect(() => {
         // must check if we already brought the data from store and if we did, we dont need to do it again
@@ -70,7 +70,7 @@ const AddReceiveFruits = (props) => {
         if (fruitTypesList.length === 0) { dispatch(loadFruits(_token)) }
         if (growersList.length === 0) { dispatch(loadGrowers(_token)) }
         if (packingHousesList.length === 0) { dispatch(loadpackingHouses(_token)) }
-        if (plotsList.length === 0) { dispatch(loadPlots(_token)) }
+        dispatch(loadPlots(selected_season, _token)) 
     }, [])
 
 
@@ -121,25 +121,25 @@ const AddReceiveFruits = (props) => {
         let filteredRecord = list.filter((item) => parseInt(item.id) === parseInt(optionID))
 
         if (filteredRecord.length !== 0) {
-            setCopyReceivingFruit({ ...copyReceivingFruit, plotID: filteredRecord[0].id, plotName: filteredRecord[0].plotName })
+            setCopyReceivingFruit({ ...copyReceivingFruit, plotID: filteredRecord[0].id, plotName: filteredRecord[0].plotName, fruitTypeID: filteredRecord[0].fruitTypeID, fruitType: filteredRecord[0].fruitType })
         }
         else {
-            setCopyReceivingFruit({ ...copyReceivingFruit, plotID: 'בחר', plotName: 'בחר' })
+            setCopyReceivingFruit({ ...copyReceivingFruit, plotID: 'בחר', plotName: 'בחר' , fruitTypeID: 'בחר', fruitName: 'בחר', fruitType: 'בחר' })
         }
     }
 
     /**************************************************** */
-    let fruitTypeIsActiveLList = GenericListCreator(fruitTypesList)
+    // let fruitTypeIsActiveLList = GenericListCreator(fruitTypesList)
 
-    const handleFruitsListSet = (optionID, list) => {
-        let filteredRecord = list.filter((item) => parseInt(item.id) === parseInt(optionID))
-        if (filteredRecord.length !== 0) {
-            setCopyReceivingFruit({ ...copyReceivingFruit, fruitTypeID: filteredRecord[0].id, fruitName: filteredRecord[0].fruitName, fruitType: filteredRecord[0].fruitType })
-        }
-        else {
-            setCopyReceivingFruit({ ...copyReceivingFruit, fruitTypeID: 'בחר', fruitName: 'בחר', fruitType: 'בחר' })
-        }
-    }
+    // const handleFruitsListSet = (optionID, list) => {
+    //     let filteredRecord = list.filter((item) => parseInt(item.id) === parseInt(optionID))
+    //     if (filteredRecord.length !== 0) {
+    //         setCopyReceivingFruit({ ...copyReceivingFruit, fruitTypeID: filteredRecord[0].id, fruitName: filteredRecord[0].fruitName, fruitType: filteredRecord[0].fruitType })
+    //     }
+    //     else {
+    //         setCopyReceivingFruit({ ...copyReceivingFruit, fruitTypeID: 'בחר', fruitName: 'בחר', fruitType: 'בחר' })
+    //     }
+    // }
 
     /**************************************************** */
     let dealNameIsActiveLList = GenericListCreator(dealNamesList)
@@ -280,7 +280,7 @@ const AddReceiveFruits = (props) => {
                 Cell: EditableCell
             },
             {
-                Header: "חלקה",
+                Header: "חלקה-זן",
                 accessor: "plotName",
                 Cell: () => {
 
@@ -289,28 +289,28 @@ const AddReceiveFruits = (props) => {
                         <select value={copyReceivingFruit.plotID} onChange={(e) => handlePlotsListSet(e.target.value, plotIsActiveList)}>
                             <option>בחר</option>
                             {plotIsActiveList.map((option) => (
-                                <option key={option.id} value={option.id}>{option.plotName}</option>
+                                <option key={option.id} value={option.id}>{option.plotName}  | {option.fruitType}</option>
                             ))}
                         </select>
                     )
                 }
             },
-            {
-                Header: "זן",
-                accessor: "fruitType",
-                Cell: () => {
+            // {
+            //     Header: "זן",
+            //     accessor: "fruitType",
+            //     Cell: () => {
 
-                    return (
+            //         return (
 
-                        <select value={copyReceivingFruit.fruitTypeID} onChange={(e) => handleFruitsListSet(e.target.value, fruitTypeIsActiveLList)}>
-                            <option>בחר</option>
-                            {fruitTypeIsActiveLList.map((option) => (
-                                <option key={option.id} value={option.id}>{option.fruitType} | {option.fruitName}</option>
-                            ))}
-                        </select>
-                    )
-                }
-            },
+            //             <select value={copyReceivingFruit.fruitTypeID} onChange={(e) => handleFruitsListSet(e.target.value, fruitTypeIsActiveLList)}>
+            //                 <option>בחר</option>
+            //                 {fruitTypeIsActiveLList.map((option) => (
+            //                     <option key={option.id} value={option.id}>{option.fruitType} | {option.fruitName}</option>
+            //                 ))}
+            //             </select>
+            //         )
+            //     }
+            // },
             {
                 Header: "עסקה",
                 accessor: "dealName",

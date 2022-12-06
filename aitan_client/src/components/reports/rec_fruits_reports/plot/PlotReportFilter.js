@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { loadPlots } from '../../../../redux/rec_fruit_actions/plots/plots_actions'
+import { loadPlots } from '../../../../redux/rec_fruit_actions/plotDunam/plotsDunam_actions'
 import GenericListCreator from "../../../general_comp/GenericListCreator";
 import { VscDebugStart } from 'react-icons/vsc';
 import Popup from '../../../general_comp/popUps/Popup'
@@ -51,7 +51,7 @@ const PlotReportFilter = () => {
 
 
   let plotsList = []
-  let plotsList_pre = useSelector(state => state.plots.plots)
+  let plotsList_pre = useSelector(state => state.plotsDunam.plots)
   if (plotsList_pre !== 'The user is not autorized') { plotsList = plotsList_pre }
   else { plotsList = [] }
 
@@ -69,6 +69,11 @@ const PlotReportFilter = () => {
 
   // if the isActiveplot is true ==> need to provide plots that are active
   let filterPlotsList = isOnlyActivePlot ? plotsIsActiveList : plotsList
+   
+  //leave only the unique dicts from filterPlotsList
+   const uniquePlots = filterPlotsList.filter((o, i) =>
+   i === filterPlotsList.findIndex(oo => o.plotName === oo.plotName )
+);
 
 
   const handelPlotisActive = () => {
@@ -135,7 +140,7 @@ const PlotReportFilter = () => {
 
   useEffect(() => {
     // must check if we already brought the data from store and if we did, we dont need to do it again
-    if (plotsList.length === 0) { dispatch(loadPlots(_token)) }
+    if (plotsList.length === 0) { dispatch(loadPlots('2999', _token)) }
   }, [])
 
   //===========================================================
@@ -204,7 +209,7 @@ const PlotReportFilter = () => {
             {plotReportParams.reportType === 'צובר חלקה' ? <div id="growers">
               <select onChange={handelPlotChoise}>
                 <option value='בחר' >בחר חלקה </option>
-                {filterPlotsList.map((option) => (
+                {uniquePlots.map((option) => (
                   <option key={option.id} value={option.id} option-name={option.plotName}>{option.plotName} </option>
                 ))}
               </select>

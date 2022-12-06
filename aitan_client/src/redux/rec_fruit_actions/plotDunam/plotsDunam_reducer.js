@@ -1,4 +1,4 @@
-import * as types from "./plots_action_types";
+import * as types from "./plotsDunam_action_types";
 
 
 const initialState = {

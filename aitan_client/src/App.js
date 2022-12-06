@@ -14,7 +14,8 @@ import MainPage from './components/mainPage/MainPage';
 import GrowersPage from './components/rec_fruit_comp/growers/Growers';
 import PackingHousePage from './components/rec_fruit_comp/packingHouse/PackingHouse'
 import FruitsPage from './components/rec_fruit_comp/fruits/Fruits'
-import PlotsPage from './components/rec_fruit_comp/plots/Plots'
+
+import PlotsPage from './components/rec_fruit_comp/plotsDunam/PlotsDunam'
 import PackingMaterialPage from './components/rec_fruit_comp/packingMaterial/PackingMaterial'
 import DealNamesPage from './components/rec_fruit_comp/dealNames/DealNames'
 import ReceiveFruitsPage from './components/rec_fruit_comp/receivingFruits/ReceiveFruits'

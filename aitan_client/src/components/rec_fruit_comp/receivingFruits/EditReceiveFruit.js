@@ -7,7 +7,7 @@ import { loadDealNames } from '../../../redux/rec_fruit_actions/dealNames/dealNa
 import { loadFruits } from '../../../redux/rec_fruit_actions/fruits/fruits_actions'
 import { loadGrowers } from '../../../redux/rec_fruit_actions/growers/growers_actions'
 import { loadpackingHouses } from '../../../redux/rec_fruit_actions/packingHouse/packingHouse_actions'
-import { loadPlots } from '../../../redux/rec_fruit_actions/plots/plots_actions'
+import { loadPlots } from '../../../redux/rec_fruit_actions/plotDunam/plotsDunam_actions'
 import GenericEditPage from "../../general_comp/GenericEditPage";
 import GenericListCreator from "../../general_comp/GenericListCreator";
 import EditableCell from '../../general_comp/EditableCell'
@@ -22,12 +22,17 @@ const EditeceiveFruits = (props) => {
 
     const dispatch = useDispatch()
 
+    // as we filter the data of deals for only the current seasson - we need to provide this data to the updateDealDB in genericEdit page
+    let selected_season = useSelector(state => state.general.season)
+    selected_season = (selected_season === '' ? new Date().getFullYear() : selected_season)
+
+
     let fruitTypesList = useSelector(state => state.fruits.fruits)
     let dealNamesList = useSelector(state => state.dealNames.dealNames)
     let growersList = useSelector(state => state.growers.growers)
     let packingHousesList = useSelector(state => state.packingHouse.packingHouses)
     let packingMaterialsList = useSelector(state => state.packingMaterials.packingMaterials)
-    let plotsList = useSelector(state => state.plots.plots)
+    let plotsList = useSelector(state => state.plotsDunam.plots)
 
     useEffect(() => {
         // must check if we already brought the data from store and if we did, we dont need to do it again
@@ -36,12 +41,9 @@ const EditeceiveFruits = (props) => {
         if (fruitTypesList.length === 0) { dispatch(loadFruits(_token)) }
         if (growersList.length === 0) { dispatch(loadGrowers(_token)) }
         if (packingHousesList.length === 0) { dispatch(loadpackingHouses(_token)) }
-        if (plotsList.length === 0) { dispatch(loadPlots(_token)) }
+         dispatch(loadPlots(selected_season,_token)) 
     }, [])
 
-    // as we filter the data of deals for only the current seasson - we need to provide this data to the updateDealDB in genericEdit page
-    let selected_season = useSelector(state => state.general.season)
-    selected_season = (selected_season === '' ? new Date().getFullYear() : selected_season)
 
     let updateReceivingFruit = useSelector(state => state.receivingFruits.receivingFruit_2_update)
 
@@ -103,16 +105,16 @@ const EditeceiveFruits = (props) => {
 
     const handlePlotsListSet = (optionID, list) => {
         let filteredRecord = list.filter((item) => parseInt(item.id) === parseInt(optionID))
-        setEditReceivingFruit({ ...editReceivingFruit, plotID: filteredRecord[0].id, plotName: filteredRecord[0].plotName })
+        setEditReceivingFruit({ ...editReceivingFruit, plotID: filteredRecord[0].id, plotName: filteredRecord[0].plotName, fruitTypeID: filteredRecord[0].fruitTypeID, fruitType: filteredRecord[0].fruitTypeID })
     }
 
-    /**************************************************** */
-    let fruitTypeIsActiveLList = GenericListCreator(fruitTypesList)
+    // /**************************************************** */
+    // let fruitTypeIsActiveLList = GenericListCreator(fruitTypesList)
 
-    const handleFruitsListSet = (optionID, list) => {
-        let filteredRecord = list.filter((item) => parseInt(item.id) === parseInt(optionID))
-        setEditReceivingFruit({ ...editReceivingFruit, fruitTypeID: filteredRecord[0].id, fruitName: filteredRecord[0].fruitName, fruitType: filteredRecord[0].fruitType })
-    }
+    // const handleFruitsListSet = (optionID, list) => {
+    //     let filteredRecord = list.filter((item) => parseInt(item.id) === parseInt(optionID))
+    //     setEditReceivingFruit({ ...editReceivingFruit, fruitTypeID: filteredRecord[0].id, fruitName: filteredRecord[0].fruitName, fruitType: filteredRecord[0].fruitType })
+    // }
 
     /**************************************************** */
     let dealNameIsActiveLList = GenericListCreator(dealNamesList)
@@ -246,33 +248,33 @@ const EditeceiveFruits = (props) => {
                 Cell: EditableCell
             },
             {
-                Header: "חלקה",
+                Header: "חלקה-זן",
                 accessor: "plotName",
                 Cell: () => {
                     return (
 
                         <select value={editReceivingFruit.plotID} onChange={(e) => handlePlotsListSet(e.target.value, plotIsActiveList)}>
                             {plotIsActiveList.map((option) => (
-                                <option key={option.id} value={option.id}>{option.plotName}</option>
+                                <option key={option.id} value={option.id}>{option.plotName} | {option.fruitType}</option>
                             ))}
                         </select>
                     )
                 }
-            },
-            {
-                Header: "זן",
-                accessor: "fruitType",
-                Cell: () => {
-                    return (
+             },
+            // {
+            //     Header: "זן",
+            //     accessor: "fruitType",
+            //     Cell: () => {
+            //         return (
 
-                        <select value={editReceivingFruit.fruitTypeID} onChange={(e) => handleFruitsListSet(e.target.value, fruitTypeIsActiveLList)}>
-                            {fruitTypeIsActiveLList.map((option) => (
-                                <option key={option.id} value={option.id}>{option.fruitType}</option>
-                            ))}
-                        </select>
-                    )
-                }
-            },
+            //             <select value={editReceivingFruit.fruitTypeID} onChange={(e) => handleFruitsListSet(e.target.value, fruitTypeIsActiveLList)}>
+            //                 {fruitTypeIsActiveLList.map((option) => (
+            //                     <option key={option.id} value={option.id}>{option.fruitType}</option>
+            //                 ))}
+            //             </select>
+            //         )
+            //     }
+            // },
             {
                 Header: "עסקה",
                 accessor: "dealName",

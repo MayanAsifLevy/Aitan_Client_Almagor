@@ -1,5 +1,5 @@
-import * as types from "./plots_action_types";
-import * as plotsUtils from "../../../utils/PlotsUTL";
+import * as types from "./plotsDunam_action_types";
+import * as plotsUtils from "../../../utils/PlotsDunamUTL";
 
 
 const getPlots = (plots) => ({
@@ -22,10 +22,10 @@ const plot2Copy = (plotData) => ({
 
 //   --------------------------------------------
 
-export const loadPlots = (_token) => {
+export const loadPlots = (filteredSeason, _token) => {
   return async function (dispatch) {
-    const allplots = await (plotsUtils.GetPlots_list(_token))
-    if (typeof allplots !== 'string') { allplots.sort((a, b) => (a.plotName > b.plotName) ? 1 : -1) }
+    const allplots = await (plotsUtils.GetPlots_list(filteredSeason, _token))
+    if (typeof allplots !== 'string') { allplots.sort((a, b) => (a.plotName + a.fruitType > b.plotName + b.fruitType ) ? 1 : -1) }
     dispatch(getPlots(allplots))
   }
 }
@@ -48,29 +48,38 @@ export const savePlot2Update = (row) => {
 
 //---------------------------------------------
 
-export const deletPlot = (id, _token) => {
+export const deletPlot = (id,filteredSeason,  _token) => {
   return async function (dispatch) {
     await plotsUtils.delete_plot(id)
-    dispatch(loadPlots(_token))
+    dispatch(loadPlots(filteredSeason, _token))
   }
 }
 
 //---------------------------------------------
 
-export const updatePlotDB = (plotData, _token) => {
+export const updatePlotDB = (plotData, filteredSeason, _token) => {
   return async function (dispatch) {
     let result = await plotsUtils.Update_plot(plotData, plotData.id)
-    dispatch(loadPlots(_token))
+    dispatch(loadPlots(filteredSeason, _token))
     return result
   }
 }
 
 //--------------------------------------------
 
-export const addPlot = (plotData, _token) => {
+export const addPlot = (plotData, filteredSeason, _token) => {
   return async function (dispatch) {
     let result = await plotsUtils.Add_plot(plotData)
-    dispatch(loadPlots(_token))
+    dispatch(loadPlots(filteredSeason, _token))
     return result
+  }
+}
+
+//--------------------------------------------
+
+export const copyAllPlotsfromPrevYear = (filteredPrevSeason, _token) => {
+  return async function (dispatch) {
+    await plotsUtils.copy_plotsfromPrevYear(filteredPrevSeason)
+    dispatch(loadPlots(filteredPrevSeason+1, _token)) // load plots of current year
   }
 }

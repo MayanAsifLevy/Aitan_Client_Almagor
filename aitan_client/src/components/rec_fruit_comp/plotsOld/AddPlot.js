@@ -1,25 +1,31 @@
-import React, {useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
-import { updatePlotDB } from '../../../redux/rec_fruit_actions/plots/plots_actions'
+import { addPlot } from '../../../redux/rec_fruit_actions/plotsOld/plots_actions'
+import GenericAddPage from "../../general_comp/GenericAddPage";
 import EditableCell from '../../general_comp/EditableCell'
-import GenericEditPage from "../../general_comp/GenericEditPage";
 
-const EditPlot = (props) => {
+const AddPlot = (props) => {
 
-    let updatePlot = useSelector(state => state.plots.plot_2_update)
 
-    // in case we cant update and we want to return the edit table to contain the original data
-    let origPlotToUpdate = updatePlot
+    const blankRecord = { plotName: '', isActive: 1 }
 
-    let [editPlot, setEditPlot] = useState(updatePlot)
+    let plot2Copy = useSelector(state => state.plots.plot_2_Copy)
+
+    let [copyPlot, setCopyPlot] = useState(blankRecord)
 
     useEffect(() => {
-        setEditPlot(updatePlot)
-    }, [updatePlot])
+        plot2Copy === '' ? setCopyPlot(blankRecord) : setCopyPlot(plot2Copy)
+    }, [plot2Copy]) //2.8.22 add [plot2Copy]
 
-    // contain the data we changed and update the setEditPlot   
+
+    const cancelBack = () => {
+        props.back()
+    }
+
+
+    // contain the data we changed and update the setCopyPlot   
     const updateMyData = (columnId, value) => {
-        setEditPlot((old) => {
+        setCopyPlot((old) => {
             return {
                 ...old,
                 [columnId]: value,
@@ -29,26 +35,19 @@ const EditPlot = (props) => {
     };
 
 
-    const cancelBack = () => {
-        props.back()
-    }
-
-
     const columns =
         [
             {
-                Header: "ID",
-                accessor: "id",
-            },
-            {
                 Header: "חלקה",
                 accessor: "plotName",
+                // width: 430,
                 Cell: EditableCell
 
             },
             {
                 Header: "פעיל?",
                 accessor: "isActive",
+                // width: 250,
                 Cell: row => {
 
                     return (
@@ -76,17 +75,20 @@ const EditPlot = (props) => {
     return (
 
         <div>
-            <GenericEditPage
-                updateObjDB={updatePlotDB}
+            <GenericAddPage
+                addObjDB={addPlot}
                 updateMyData={updateMyData}
                 columns={columns}
-                data={editPlot}
-                setData={setEditPlot}
-                originalData={origPlotToUpdate}
+                data={copyPlot}
+                setData={setCopyPlot}
+                blankRecord={blankRecord}
                 back={cancelBack}
-                popUpMessage={message} />
+                popUpMessage={message}
+            />
         </div>
     )
+
 }
 
-export default EditPlot;
+
+export default AddPlot;
