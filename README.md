@@ -10,9 +10,8 @@ Receiving Fruits section:
     erDiagram
         dealsname ||--o{ deals : "is part of"  
         fruits ||--o{ deals : "is part of"
-     
-        fruits ||--o{ receiving_fruits : "is part of"      
-        plots ||--o{ receiving_fruits : "is part of"
+        fruits ||--o{ plotsDunam : "is part of"
+        plotsDunam ||--o{ receiving_fruits : "is part of"
         packing_mat ||--o{ receiving_fruits : "is part of"
         packing_house ||--o{ receiving_fruits : "is part of"
         growers ||--o{ receiving_fruits : "is part of"
@@ -48,11 +47,16 @@ deals{
         date created_date
      }
 
-plots{
+plotsDunam{
         int ID PK
+        int season "unique"
         string PlotName "unique"
+        int fruitTypeID FK "unique"
+        int plantYear "unique"
+        int assamblyYear
+        int dunam
+        string plotOwner
         Boolean isActive
-        date created_date
      }
 
 packing_mat{
