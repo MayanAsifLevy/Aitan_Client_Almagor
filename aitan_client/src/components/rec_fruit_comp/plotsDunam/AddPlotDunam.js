@@ -21,10 +21,10 @@ const AddPlot = (props) => {
         if (fruitTypesList.length === 0) { dispatch(loadFruits(_token)) }
     }, [])
 
-    const blankRecord = { season: selected_season, plotName: '', fruitTypeID:0, plantYear: selected_season, assamblyYear:'', 
+    const blankRecord = { season: selected_season, plotName: '', fruitTypeID:0, plantYear: selected_season, assamblyYear:0, 
                             dunam:0, plotOwner:'אחר',  isActive: 1 }
 
-    let plot2Copy = useSelector(state => state.plots.plot_2_Copy)
+    let plot2Copy = useSelector(state => state.plotsDunam.plot_2_Copy)
 
     let [copyPlot, setCopyPlot] = useState(blankRecord)
 
@@ -144,8 +144,6 @@ const AddPlot = (props) => {
             {
                 Header: "בעל החלקה",
                 accessor: "plotOwner",
-                // width:300,
-                // canAdd2List: "1",
                 Cell: () => {
                     return (<select value={copyPlot.plotOwner} onChange={(e) => setCopyPlot({ ...copyPlot, plotOwner: e.target.value })}>
                         {plotOwnerList.map((option) => (

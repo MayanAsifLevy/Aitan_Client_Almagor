@@ -43,7 +43,7 @@ export async function Add_plot(plotData) {
 
 export async function copy_plotsfromPrevYear(filteredPrevSeason){
   try {
-    const result = await axios.post(`${process.env.REACT_APP_BASE_APP}/plots`, { params: { 'PrevSeason2filter': filteredPrevSeason} });
+    const result = await axios.post(`${process.env.REACT_APP_BASE_APP}/plots/${filteredPrevSeason}`);
     console.log('result', result)
     return result.data
   } catch (error) {
