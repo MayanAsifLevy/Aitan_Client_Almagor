@@ -81,7 +81,7 @@ export const addHeader = (headerData, filteredSeason, _token) => {
 export const updateInvoiceStatus = (headerData, filteredSeason, _token) => {
   return async function (dispatch) {
     let result = await invoicesUtils.update_InvoiceStatus(headerData)
-    // dispatch(loadReceiptHeaders(filteredSeason, _token))
+    dispatch(loadReceiptHeaders(filteredSeason, _token))
     return result
   }
 }
