@@ -67,7 +67,7 @@ const EditPlot = (props) => {
     /*********** set year drop down list - decending***************************************** */
 
     const year = (new Date()).getFullYear();
-    const minYear = 2000;
+    const minYear = 1975;
     const diff=year+2-minYear;
     let years = [null];
 
