@@ -35,7 +35,7 @@ const ReceiptsPage = () => {
   }
 
   const handelPopUpCont = (row) => {
-    dispatch(updateInvoiceStatus(row, selected_season))
+    dispatch(updateInvoiceStatus(row, selected_season, _token))
     setPopUp(false)
   }
 
